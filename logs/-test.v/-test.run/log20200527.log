@@ -1,0 +1,6 @@
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\example_test.go:8]2020/05/27 15:03:15 AAA
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\log.go:82]2020/05/27 15:03:44 AAA
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\log.go:82]2020/05/27 15:04:21 AAA
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\log.go:82]2020/05/27 15:04:32 AAA
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\example_test.go:13]2020/05/27 15:04:57 AAA
+[DEBUG][C:\Users\Shouting\go\src\github.com\z9905080\gloger\example_test.go:8]2020/05/27 15:05:08 AAA
