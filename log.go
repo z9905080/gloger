@@ -15,7 +15,7 @@ type Level int
 
 // 參數設定
 var (
-	RWLock             sync.RWMutex
+	RWLock             =new(sync.RWMutex)
 	F                  *os.File
 	DefaultPrefix      = ""
 	DefaultCallerDepth = 2
