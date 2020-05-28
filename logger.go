@@ -93,9 +93,48 @@ func (gLogger *GLogger) Fatal(v ...interface{}) {
 	gLogger.writeLog(FATAL, v...)
 }
 
+// DebugF 除錯層級 printf
+func (gLogger *GLogger) DebugF(format string, v ...interface{}) {
+	if gLogger.currentLevel <= DEBUG {
+		gLogger.writeFormatLog(DEBUG, format, v...)
+	}
+}
+
+// InfoF 一般層級 printf
+func (gLogger *GLogger) InfoF(format string, v ...interface{}) {
+	if gLogger.currentLevel <= INFO {
+		gLogger.writeFormatLog(INFO, format, v...)
+	}
+}
+
+// WarnF 警告層級
+func (gLogger *GLogger) WarnF(format string, v ...interface{}) {
+	if gLogger.currentLevel <= WARNING {
+		gLogger.writeFormatLog(WARNING, format, v...)
+	}
+}
+
+// ErrorF 錯誤層級
+func (gLogger *GLogger) ErrorF(format string, v ...interface{}) {
+	if gLogger.currentLevel <= ERROR {
+		gLogger.writeFormatLog(ERROR, format, v...)
+	}
+}
+
+// FatalF 致命層級
+func (gLogger *GLogger) FatalF(format string, v ...interface{}) {
+	gLogger.writeFormatLog(FATAL, format, v...)
+}
 
 func (gLogger *GLogger) writeLog(level Level, v ...interface{}) {
+	gLogger.write(level, "", v...)
+}
 
+func (gLogger *GLogger) writeFormatLog(level Level, format string, v ...interface{}) {
+	gLogger.write(level, format, v...)
+}
+
+func (gLogger *GLogger) write(level Level, format string, v ...interface{}) {
 	// 加上Lock是為了防止同時寫入時重複開檔
 	gLogger.RWLock.Lock()
 	defer gLogger.RWLock.Unlock()
@@ -117,10 +156,18 @@ func (gLogger *GLogger) writeLog(level Level, v ...interface{}) {
 	}
 
 	gLogger.logger.SetPrefix(gLogger.logPrefix)
-	if level != FATAL {
-		gLogger.logger.Println(v...)
-	} else {
-		gLogger.logger.Fatalln(v...)
+
+	if format != "" {
+		if level != FATAL {
+			gLogger.logger.Println(v...)
+		} else {
+			gLogger.logger.Fatalln(v...)
+		}
+	}else{
+		if level != FATAL {
+			gLogger.logger.Printf(format,v...)
+		} else {
+			gLogger.logger.Printf(format,v...)
+		}
 	}
 }
-
