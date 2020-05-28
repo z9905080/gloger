@@ -157,7 +157,7 @@ func (gLogger *GLogger) write(level Level, format string, v ...interface{}) {
 
 	gLogger.logger.SetPrefix(gLogger.logPrefix)
 
-	if format != "" {
+	if format == "" {
 		if level != FATAL {
 			gLogger.logger.Println(v...)
 		} else {
