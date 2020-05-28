@@ -31,7 +31,7 @@ func NewLogger() *GLogger {
 		RWLock:             new(sync.RWMutex),
 		File:               file,
 		defaultPrefix:      "",
-		defaultCallerDepth: 2,
+		defaultCallerDepth: 3,
 		logger:             logger,
 		logPrefix:          "",
 		levelFlags:         []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"},
