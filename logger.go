@@ -43,14 +43,14 @@ func NewLogger() *GLogger {
 
 // SetLogMode 設置Log模式
 func (gLogger *GLogger) SetLogMode(mode OutputMode) {
-	mLogger.currentMode = mode
+	gLogger.currentMode = mode
 	switch mode {
 	case Stdout:
-		mLogger.logger.SetOutput(os.Stdout)
+		gLogger.logger.SetOutput(os.Stdout)
 	case File:
-		mLogger.logger.SetOutput(mLogger.File)
+		gLogger.logger.SetOutput(gLogger.File)
 	default:
-		mLogger.logger.SetOutput(os.Stdout)
+		gLogger.logger.SetOutput(os.Stdout)
 	}
 }
 
