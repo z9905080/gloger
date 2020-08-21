@@ -60,6 +60,11 @@ func (gLogger *GLogger) SetCurrentLevel(level Level) {
 	gLogger.currentLevel = level
 }
 
+// FatalF 致命層級
+func (gLogger *GLogger) SetCallerDepth(depth int) {
+	gLogger.defaultCallerDepth = depth
+}
+
 // Debug 除錯層級
 func (gLogger *GLogger) Debug(v ...interface{}) {
 	if gLogger.currentLevel <= DEBUG {
@@ -163,11 +168,11 @@ func (gLogger *GLogger) write(level Level, format string, v ...interface{}) {
 		} else {
 			gLogger.logger.Fatalln(v...)
 		}
-	}else{
+	} else {
 		if level != FATAL {
-			gLogger.logger.Printf(format,v...)
+			gLogger.logger.Printf(format, v...)
 		} else {
-			gLogger.logger.Printf(format,v...)
+			gLogger.logger.Printf(format, v...)
 		}
 	}
 }

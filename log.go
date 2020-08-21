@@ -101,27 +101,33 @@ func Error(v ...interface{}) {
 func Fatal(v ...interface{}) {
 	mLogger.Fatal(v...)
 }
+
 // DebugF 除錯層級
-func DebugF(format string,v ...interface{}) {
-	mLogger.DebugF(format,v...)
+func DebugF(format string, v ...interface{}) {
+	mLogger.DebugF(format, v...)
 }
 
 // InfoF 一般層級
-func InfoF(format string,v ...interface{}) {
-	mLogger.InfoF(format,v...)
+func InfoF(format string, v ...interface{}) {
+	mLogger.InfoF(format, v...)
 }
 
 // WarnF 警告層級
-func WarnF(format string,v ...interface{}) {
-	mLogger.WarnF(format,v...)
+func WarnF(format string, v ...interface{}) {
+	mLogger.WarnF(format, v...)
 }
 
 // ErrorF 錯誤層級
-func ErrorF(format string,v ...interface{}) {
-	mLogger.ErrorF(format,v...)
+func ErrorF(format string, v ...interface{}) {
+	mLogger.ErrorF(format, v...)
 }
 
 // Fatal 致命層級
-func FatalF(format string,v ...interface{}) {
-	mLogger.FatalF(format,v...)
+func FatalF(format string, v ...interface{}) {
+	mLogger.FatalF(format, v...)
+}
+
+// GetLogger 取得套件內的Logger
+func GetLogger() *GLogger {
+	return &mLogger
 }
