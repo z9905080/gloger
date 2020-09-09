@@ -29,6 +29,7 @@ const (
 	WARNING
 	ERROR
 	FATAL
+	FORCE
 )
 
 type OutputMode int
@@ -102,6 +103,11 @@ func Fatal(v ...interface{}) {
 	mLogger.Fatal(v...)
 }
 
+// Force 強制印出層級
+func Force(v ...interface{}) {
+	mLogger.Force(v...)
+}
+
 // DebugF 除錯層級
 func DebugF(format string, v ...interface{}) {
 	mLogger.DebugF(format, v...)
@@ -125,6 +131,11 @@ func ErrorF(format string, v ...interface{}) {
 // Fatal 致命層級
 func FatalF(format string, v ...interface{}) {
 	mLogger.FatalF(format, v...)
+}
+
+// ForceF 強制印出層級
+func ForceF(format string, v ...interface{}) {
+	mLogger.ForceF(format, v...)
 }
 
 // GetLogger 取得套件內的Logger

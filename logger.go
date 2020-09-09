@@ -98,6 +98,11 @@ func (gLogger *GLogger) Fatal(v ...interface{}) {
 	gLogger.writeLog(FATAL, v...)
 }
 
+// Force 不管層級一定要印出
+func (gLogger *GLogger) Force(v ...interface{}) {
+	gLogger.writeLog(FORCE, v...)
+}
+
 // DebugF 除錯層級 printf
 func (gLogger *GLogger) DebugF(format string, v ...interface{}) {
 	if gLogger.currentLevel <= DEBUG {
@@ -129,6 +134,11 @@ func (gLogger *GLogger) ErrorF(format string, v ...interface{}) {
 // FatalF 致命層級
 func (gLogger *GLogger) FatalF(format string, v ...interface{}) {
 	gLogger.writeFormatLog(FATAL, format, v...)
+}
+
+// ForceF 致命層級
+func (gLogger *GLogger) ForceF(format string, v ...interface{}) {
+	gLogger.writeFormatLog(FORCE, format, v...)
 }
 
 func (gLogger *GLogger) writeLog(level Level, v ...interface{}) {
