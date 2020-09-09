@@ -9,18 +9,22 @@ import (
 // Level Debug的層級編號
 type Level int
 
-// 參數設定
-//var (
-//	RWLock             =new(sync.RWMutex)
-//	File                  *os.File
-//	DefaultPrefix      = ""
-//	DefaultCallerDepth = 2
-//	logger             *log.Logger
-//	logPrefix          = ""
-//	levelFlags         = []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"}
-//	currentLevel       = DEBUG
-//	currentMode        = File
-//)
+var levelFlags map[Level]string
+
+func init() {
+	levelFlags = map[Level]string{
+		DEBUG:   "DEBUG",
+		INFO:    "INFO",
+		WARNING: "WARN",
+		ERROR:   "ERROR",
+		FATAL:   "FATAL",
+		FORCE:   "FORCE",
+	}
+}
+
+func (l Level) String() string {
+	return levelFlags[l]
+}
 
 // 層級列表
 const (
@@ -52,7 +56,6 @@ func init() {
 		defaultCallerDepth: 4,
 		logger:             logger,
 		logPrefix:          "",
-		levelFlags:         []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"},
 		currentLevel:       DEBUG,
 		currentMode:        File,
 	}

@@ -17,7 +17,6 @@ type GLogger struct {
 	defaultCallerDepth int
 	logger             *log.Logger
 	logPrefix          string
-	levelFlags         []string
 	currentLevel       Level
 	currentMode        OutputMode
 }
@@ -34,7 +33,6 @@ func NewLogger() *GLogger {
 		defaultCallerDepth: 3,
 		logger:             logger,
 		logPrefix:          "",
-		levelFlags:         []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"},
 		currentLevel:       DEBUG,
 		currentMode:        File,
 	}
@@ -165,9 +163,9 @@ func (gLogger *GLogger) write(level Level, format string, v ...interface{}) {
 	_, file, line, ok := runtime.Caller(gLogger.defaultCallerDepth)
 	if ok {
 		t, _ := filepath.Abs(file)
-		gLogger.logPrefix = fmt.Sprintf("[%s][%s:%d]", gLogger.levelFlags[level], t, line)
+		gLogger.logPrefix = fmt.Sprintf("[%s][%s:%d]", level.String(), t, line)
 	} else {
-		gLogger.logPrefix = fmt.Sprintf("[%s]", gLogger.levelFlags[level])
+		gLogger.logPrefix = fmt.Sprintf("[%s]", level.String())
 	}
 
 	gLogger.logger.SetPrefix(gLogger.logPrefix)
